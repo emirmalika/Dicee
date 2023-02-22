@@ -9,10 +9,12 @@ import UIKit
 
 class DiceeViewController: UIViewController {
     
-    private let dicees = DiceeView()
-    private let bg = UIImageView()
-    private let logo = UIImageView()
-    private let rollBtn = UIButton()
+    let dices = DiceeView()
+    let bg = UIImageView()
+    let logo = UIImageView()
+    let rollBtn = UIButton()
+    
+    let dicesArray = [UIImage(named: "DiceOne"), UIImage(named: "DiceTwo"), UIImage(named: "DiceThree"), UIImage(named: "DiceFour"), UIImage(named: "DiceFive"), UIImage(named: "DiceSix")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,17 +40,18 @@ extension DiceeViewController {
         rollBtn.setTitle("Roll", for: [])
         rollBtn.backgroundColor = UIColor((#colorLiteral(red: 0.6078431373, green: 0.1098039216, blue: 0.1215686275, alpha: 1)))
         rollBtn.tintColor = .white
+        rollBtn.addTarget(self, action: #selector(rollBtnTapped), for: .touchUpInside)
     }
     
     private func layout() {
         view.addSubview(bg)
-        view.addSubview(dicees)
+        view.addSubview(dices)
         view.addSubview(logo)
         view.addSubview(rollBtn)
         
         NSLayoutConstraint.activate([
-            dicees.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            dicees.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            dices.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            dices.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -69,5 +72,12 @@ extension DiceeViewController {
             rollBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -130),
             rollBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200)
         ])
+    }
+}
+
+extension DiceeViewController {
+    @objc func rollBtnTapped() {
+        dices.diceeOne.image = dicesArray.randomElement() as? UIImage
+        dices.diceeTwo.image = dicesArray.randomElement() as? UIImage
     }
 }

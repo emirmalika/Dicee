@@ -9,9 +9,9 @@ import UIKit
 
 class DiceeView: UIView {
     
-    private let diceeOne = UIImageView()
-    private let diceeTwo = UIImageView()
-    private let stackView = UIStackView()
+    let diceeOne = UIImageView()
+    let diceeTwo = UIImageView()
+    let stackView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,12 +31,10 @@ extension DiceeView {
         
         diceeOne.translatesAutoresizingMaskIntoConstraints = false
         diceeOne.image = UIImage(named: "DiceOne")
-        diceeOne.contentMode = .scaleAspectFit
-        
+      
         diceeTwo.translatesAutoresizingMaskIntoConstraints = false
         diceeTwo.image = UIImage(named: "DiceTwo")
-        diceeTwo.contentMode = .scaleAspectFit
-        
+      
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 120
